@@ -418,7 +418,13 @@
       }
     },
     {
-      "scope": ["keyword", "storage.type", "storage.type.class", "storage.modifier"],
+      "scope": ["storage.type", "storage.type.class", "storage.modifier"],
+      "settings": {
+        "foreground": "#C87850"
+      }
+    },
+    {
+      "scope": ["keyword"],
       "settings": {
         "foreground": "#50c878"
       }

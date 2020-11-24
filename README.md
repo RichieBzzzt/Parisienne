@@ -1,1 +1,1 @@
-![PowerShell code sample](preview.png)
+![PowerShell_code_sample](./preview.png)
