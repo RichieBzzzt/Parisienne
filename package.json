@@ -1,0 +1,21 @@
+{
+    "name": "Parisienne",
+    "displayName": "Parisienne",
+    "description": "Paris Green theme",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.51.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Parisienne",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Parisienne-color-theme.json"
+            }
+        ]
+    }
+}
