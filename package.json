@@ -4,7 +4,7 @@
     "description": "Paris Green theme",
     "publisher": "richiebzzzt",
     "icon": "images/icon.png",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "engines": {
         "vscode": "^1.51.0"
     },
