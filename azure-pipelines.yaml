@@ -35,6 +35,8 @@ steps:
         vsce publish $(VersionNumber) -p $(PAT)
       failOnStderr: true
       workingDirectory: $(System.DefaultWorkingDirectory)
+    env:
+      PAT: $(POSTMAN)
 
   - task: CopyFiles@2
     displayName: "Copy Files to: $(build.artifactstagingdirectory)"
