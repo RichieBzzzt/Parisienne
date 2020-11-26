@@ -24,20 +24,13 @@ steps:
           $BuildName = $env:BUILD_DEFINITIONNAME +'_'+$env:VERSIONNUMBER +'_'+ $env:BUILD_SOURCEBRANCHNAME 
           Write-Host "##vso[build.updatebuildnumber]$BuildName"
 
-  - task: PythonScript@0
-    inputs:
-      scriptSource: 'filePath'
-      scriptPath: $(Build.SourcesDirectory)/alterpackage.py 
-      arguments: $(VersionNumber)
-    displayName: "Add version number to package.json" 
-
   - task: Bash@3
     inputs:
       targetType: 'inline'
       script: |
         sudo npm install -g vsce
-        vsce package 
-        vsce publish -p $(PAT)
+        vsce package
+        vsce publish $(VersionNumber) -p $(PAT)
       failOnStderr: true
       workingDirectory: $(System.DefaultWorkingDirectory)
 
