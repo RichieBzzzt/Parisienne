@@ -4,7 +4,7 @@
     "description": "Paris Green theme",
     "publisher": "richiebzzzt",
     "icon": "images/icon.png",
-    "version": "0.1.11",
+    "version": "0.1.14",
     "engines": {
         "vscode": "^1.51.0"
     },
@@ -24,5 +24,4 @@
         "type": "git",
         "url": "https://github.com/RichieBzzzt/Parisienne/"
     }
-
 }
