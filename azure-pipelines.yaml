@@ -22,7 +22,7 @@ steps:
       targetType: 'inline'
       script: |
           $BuildName = $env:BUILD_DEFINITIONNAME +'_'+$env:VERSIONNUMBER +'_'+ $env:BUILD_SOURCEBRANCHNAME 
-
+          Write-Host "##vso[build.updatebuildnumber]$BuildName"
   - task: PythonScript@0
     inputs:
       scriptSource: 'filePath'
@@ -34,6 +34,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        npm install -g vsce
         vsce package 
         vsce publish -p $(PAT)
       failOnStderr: true
