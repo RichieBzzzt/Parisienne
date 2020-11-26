@@ -23,6 +23,7 @@ steps:
       script: |
           $BuildName = $env:BUILD_DEFINITIONNAME +'_'+$env:VERSIONNUMBER +'_'+ $env:BUILD_SOURCEBRANCHNAME 
           Write-Host "##vso[build.updatebuildnumber]$BuildName"
+
   - task: PythonScript@0
     inputs:
       scriptSource: 'filePath'
@@ -34,8 +35,20 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        npm install -g vsce
+        sudo npm install -g vsce
         vsce package 
         vsce publish -p $(PAT)
       failOnStderr: true
       workingDirectory: $(System.DefaultWorkingDirectory)
+
+  - task: CopyFiles@2
+    displayName: "Copy Files to: $(build.artifactstagingdirectory)"
+    inputs:
+      Contents: |
+        **
+      TargetFolder: "$(build.artifactstagingdirectory)"
+  
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Artifact: parisienne"
+    inputs:
+      ArtifactName: parisienne
