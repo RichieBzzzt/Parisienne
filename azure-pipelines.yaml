@@ -25,6 +25,7 @@ steps:
           Write-Host "##vso[build.updatebuildnumber]$BuildName"
 
   - task: Bash@3
+    displayName: Package and Publish VS Code Theme
     inputs:
       targetType: 'inline'
       script: |
