@@ -32,7 +32,7 @@ steps:
         git config user.name "RichieBzzzt"
         sudo npm install -g vsce
         vsce package
-        vsce publish $(VersionNumber) -p $(PAT)
+        vsce publish $(VersionNumber) -p $PAT
       failOnStderr: true
       workingDirectory: $(System.DefaultWorkingDirectory)
     env:
