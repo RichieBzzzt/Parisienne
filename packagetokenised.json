@@ -1,0 +1,28 @@
+{
+    "name": "parisienne",
+    "displayName": "Parisienne",
+    "description": "Paris Green theme",
+    "publisher": "richiebzzzt",
+    "icon": "images/icon.png",
+    "version": "<<version_number>>",
+    "engines": {
+        "vscode": "^1.51.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Parisienne",
+                "uiTheme": "vs-dark",
+                "path": "./themes/Parisienne-color-theme.json"
+            }
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RichieBzzzt/Parisienne/"
+    }
+
+}

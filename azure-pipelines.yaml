@@ -14,18 +14,27 @@ variables:
     value: $[counter(variables['BaseVersionNumber'], 1)]
   - name: VersionNumber 
     value: $(BaseVersionNumber).$(Minor)
-stages: 
+  
+steps:
+  - task: PowerShell@2
+    displayName: "Update Build Number"
+    inputs:
+      targetType: 'inline'
+      script: |
+          $BuildName = $env:BUILD_DEFINITIONNAME +'_'+$env:VERSIONNUMBER +'_'+ $env:BUILD_SOURCEBRANCHNAME 
 
-- stage: BuildSetup
-  displayName: Setup Build 
-  jobs: 
-  - job:
-    steps:
-      - task: PowerShell@2
-        displayName: "Update Build Number"
-        inputs:
-          targetType: 'inline'
-          script: |
-              $BuildName = $env:BUILD_DEFINITIONNAME +'_'+$env:VERSIONNUMBER +'_'+ $env:BUILD_SOURCEBRANCHNAME 
-              Write-Host "##vso[build.updatebuildnumber]$BuildName"
+  - task: PythonScript@0
+    inputs:
+      scriptSource: 'filePath'
+      scriptPath: $(Build.SourcesDirectory)/alterpackage.py 
+      arguments: $(VersionNumber)
+    displayName: "Add version number to package.json" 
 
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        vsce package 
+        vsce publish -p $(PAT)
+      failOnStderr: true
+      workingDirectory: $(System.DefaultWorkingDirectory)
