@@ -1,0 +1,31 @@
+
+trigger:
+  - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+name: $(BuildDefinitionName)_$(VersionNumber)_$(SourceBranchName)
+
+variables:
+  - name: BaseVersionNumber 
+    value: "0.2"  
+  - name: Minor 
+    value: $[counter(variables['BaseVersionNumber'], 1)]
+  - name: VersionNumber 
+    value: $(BaseVersionNumber).$(Minor)
+stages: 
+
+- stage: BuildSetup
+  displayName: Setup Build 
+  jobs: 
+  - job:
+    steps:
+      - task: PowerShell@2
+        displayName: "Update Build Number"
+        inputs:
+          targetType: 'inline'
+          script: |
+              $BuildName = $env:BUILD_DEFINITIONNAME +'_'+$env:VERSIONNUMBER +'_'+ $env:BUILD_SOURCEBRANCHNAME 
+              Write-Host "##vso[build.updatebuildnumber]$BuildName"
+

@@ -406,6 +406,12 @@
       }
     },
     {
+      "scope": ["source.shell"],
+      "settings": {
+        "foreground": "#50c878"
+      }
+    },
+    {
       "scope": ["constant.other.color"],
       "settings": {
         "foreground": "#939597"
