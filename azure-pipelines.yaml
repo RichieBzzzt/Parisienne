@@ -28,13 +28,16 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        echo $PAT
         git config user.email "richie@bzzzt.io"
         git config user.name "RichieBzzzt"
         sudo npm install -g vsce
         vsce package
-        vsce publish $(VersionNumber) -p $(PAT)
+        vsce publish $(VersionNumber) -p $PAT
       failOnStderr: true
       workingDirectory: $(System.DefaultWorkingDirectory)
+    env:
+      PAT: $(POSTMAN)
 
   - task: CopyFiles@2
     displayName: "Copy Files to: $(build.artifactstagingdirectory)"
