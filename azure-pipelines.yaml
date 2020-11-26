@@ -28,6 +28,8 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        git config user.email "richie@bzzzt.io"
+        git config user.name "RichieBzzzt"
         sudo npm install -g vsce
         vsce package
         vsce publish $(VersionNumber) -p $(PAT)
