@@ -29,13 +29,14 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        npm install -g npm@8.10.0
         echo $PAT
         git config user.email "richie@bzzzt.io"
         git config user.name "RichieBzzzt"
         sudo npm install -g vsce
         vsce package
         vsce publish $(VersionNumber) -p $PAT
-      failOnStderr: true
+      failOnStderr: false
       workingDirectory: $(System.DefaultWorkingDirectory)
     env:
       PAT: $(POSTMAN)
